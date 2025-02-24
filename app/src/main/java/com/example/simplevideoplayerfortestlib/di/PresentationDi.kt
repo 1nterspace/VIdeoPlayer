@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 val presentationDi = module {
 
-    viewModel<DataModel>{
+    viewModel<DataModel> {
         DataModel(
             getListOfVideoUseCase = get(),
             getVideoUseCase = get()

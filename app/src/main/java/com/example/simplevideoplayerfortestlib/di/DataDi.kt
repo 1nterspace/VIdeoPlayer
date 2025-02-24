@@ -8,11 +8,11 @@ import org.koin.dsl.module
 
 val dataDi = module {
 
-    single <UserNetwork> {
+    single<UserNetwork> {
         RetrofitUserNetwork()
     }
 
-    single <UserRepository> {
+    single<UserRepository> {
         UserRepositoryImpl(userNetwork = get())
     }
 

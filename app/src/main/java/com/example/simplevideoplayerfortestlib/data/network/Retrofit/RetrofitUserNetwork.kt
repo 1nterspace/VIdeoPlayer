@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val BASE_URL = "https://sandbox.api.video"
 
-class RetrofitUserNetwork: UserNetwork {
+class RetrofitUserNetwork : UserNetwork {
 
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
@@ -33,14 +33,12 @@ class RetrofitUserNetwork: UserNetwork {
 
         return try {
             val response = apiVideoService.getVideos()
-            //Проверка успешно ли прошел запрос
             if (!response.isSuccessful) {
                 Log.e("API_ERROR", "Unsuccessful response: ${response.code()}")
                 return emptyList()
             }
 
             val videoListResponse = response.body()
-            //Проверка не пришел ли нам пустой список в успешном запросе
             if (videoListResponse == null) {
                 Log.e("API_ERROR", "Response body is null")
                 return emptyList()
@@ -51,18 +49,16 @@ class RetrofitUserNetwork: UserNetwork {
 
             videos
 
-        } catch (e:Exception){
-            //при отсутствии интернета выдает эту ошибку
+        } catch (e: Exception) {
             Log.e("API_ERROR", "Error fetching videos", e)
             emptyList()
         }
     }
 
-    override suspend fun grtVideo(position:Int): VideoItem {
+    override suspend fun grtVideo(position: Int): VideoItem {
 
         val list = getListOfVide()
 
-        //Проверка выхода ща пределы массива
         if (position < 0 || position >= list.size) {
             Log.e("API_ERROR", "Invalid position: $position")
             throw IndexOutOfBoundsException("Invalid position: $position")

@@ -7,12 +7,11 @@ import com.example.simplevideoplayerfortestlib.domain.models.VideoItem
 import com.example.simplevideoplayerfortestlib.domain.usecase.GetListOfVideoUseCase
 import com.example.simplevideoplayerfortestlib.domain.usecase.GetVideoUseCase
 
-//Вьемодель работает с юзкейсами и реагирует на поступление данных с сервера
-//Также во вью модели храняться сообщения для взаимодействия Активити и Фрагмента
+
 class DataModel(
     private val getListOfVideoUseCase: GetListOfVideoUseCase,
     private val getVideoUseCase: GetVideoUseCase
-):ViewModel() {
+) : ViewModel() {
 
     init {
         Log.d("AAA", "VM created")
@@ -24,31 +23,31 @@ class DataModel(
     }
 
 
-    val videoPlayerisActive:MutableLiveData<Boolean> by lazy {
+    val videoPlayerisActive: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
     }
 
-    val messageToFragmentMP4:MutableLiveData<String> by lazy {
+    val messageToFragmentMP4: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
 
-    val messageToFragmentTitle:MutableLiveData<String> by lazy {
+    val messageToFragmentTitle: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
 
-    val messageToActivity:MutableLiveData<Int> by lazy {
+    val messageToActivity: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>()
     }
 
     val resultList = MutableLiveData<List<VideoItem>>()
 
     //shuffled перемешивает список в случайном порядке
-    suspend fun getList(){
+    suspend fun getList() {
         val list = getListOfVideoUseCase.execute()
         resultList.value = list.shuffled()
     }
 
-    suspend fun getVideoItem(position:Int):VideoItem{
+    suspend fun getVideoItem(position: Int): VideoItem {
         return getVideoUseCase.execute(position)
     }
 

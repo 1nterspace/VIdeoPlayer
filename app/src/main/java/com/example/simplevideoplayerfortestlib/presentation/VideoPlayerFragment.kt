@@ -5,18 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.OptIn
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.media3.common.MediaItem
-import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import com.example.simplevideoplayerfortestlib.databinding.FragmentVideoPlayerBinding
 
-//Фрагмент на котором работает видео плеер
-//Видео плеер - ExoPlayer из библиотеки media3
-//Фрагмент и Активити общаются через вьюмодель
+
 class VideoPlayerFragment : Fragment() {
 
     private val dataModel: DataModel by activityViewModels()
@@ -31,10 +27,9 @@ class VideoPlayerFragment : Fragment() {
         return binding.root
     }
 
-    @OptIn(UnstableApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        Log.d("FragmentAAA","FragmentCreated ${dataModel.messageToFragmentTitle.value}")
+        Log.d("FragmentAAA", "FragmentCreated ${dataModel.messageToFragmentTitle.value}")
 
         exoPlayer = ExoPlayer.Builder(requireContext()).build()
         binding.VideoPlayer.player = exoPlayer
@@ -60,14 +55,22 @@ class VideoPlayerFragment : Fragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        exoPlayer.stop()
+        exoPlayer.release()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         dataModel.videoPlayerisActive.value = false
         Log.d("FragmentAAA", "FragmentDestroy ${dataModel.messageToFragmentTitle.value}")
         exoPlayer.release()
     }
+
     companion object {
         @JvmStatic
-        fun newInstance() = VideoPlayerFragment() }
+        fun newInstance() = VideoPlayerFragment()
+    }
 }
 

@@ -6,6 +6,6 @@ interface UserNetwork {
 
     suspend fun getListOfVide(): List<VideoItem>
 
-    suspend fun grtVideo(position:Int): VideoItem
+    suspend fun grtVideo(position: Int): VideoItem
 
 }

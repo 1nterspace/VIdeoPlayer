@@ -18,11 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-//Основной экран приложения, отвечает за отрисоку списка видео элементов,
-//работает с вьюмоделью
-//все взаимодействие с юзкейсами вынесено во вью модель
-//onConfigurationChanged - вручную отслеживаю повороты экрана для отрисовки разных экранов
-//initViews - функция для инициализации все вью объектов
+
 class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
 
     private val dataModel: DataModel by viewModel<DataModel>()
@@ -33,15 +29,14 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        // Обновление макета в зависимости от ориентации
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setContentView(R.layout.activity_main_l)
-                    Log.d("ConfigAAAA", Constants.ORIENTATION_LANDSCAPE)
-                    initViews(Constants.SPAN_COUNT_LANDSCAPE)
+            setContentView(R.layout.activity_main_l)
+            Log.d("ConfigAAAA", Constants.ORIENTATION_LANDSCAPE)
+            initViews(Constants.SPAN_COUNT_LANDSCAPE)
         } else {
-                setContentView(R.layout.activity_main)
-                Log.d("ConfigAAAA", Constants.ORIENTATION_PORTRAIT)
-                initViews(Constants.SPAN_COUNT_PORTRAIT)
+            setContentView(R.layout.activity_main)
+            Log.d("ConfigAAAA", Constants.ORIENTATION_PORTRAIT)
+            initViews(Constants.SPAN_COUNT_PORTRAIT)
         }
 
     }
@@ -54,15 +49,17 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
             dataModel.getList()
         }
     }
-    // Реализация интерфейса для обработки нажатия на элемент ресайкл вью
+
+
     override fun obClick(videoItem: VideoItem) {
         dataModel.messageToFragmentMP4.value = videoItem.assets.mp4
         dataModel.messageToFragmentTitle.value = videoItem.title
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VideoPlayerFragment.newInstance()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerView, VideoPlayerFragment.newInstance()).commit()
         binding.fragmentContainerView.visibility = View.VISIBLE
     }
 
-    @SuppressLint("CommitTransaction")
+
     private fun initViews(spanCount: Int) {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -79,8 +76,16 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
 
         dataModel.resultList.observe(this, Observer {
             if (it.isEmpty()) {
-                val toast = Toast.makeText(this, "Ошибка запроса, проверте ваше интернет соединение.", Constants.TOAST_DURATION)
-                toast.setGravity(Constants.TOAST_GRAVITY, Constants.TOAST_X_OFFSET, Constants.TOAST_Y_OFFSET)
+                val toast = Toast.makeText(
+                    this,
+                    "Ошибка запроса, проверте ваше интернет соединение.",
+                    Constants.TOAST_DURATION
+                )
+                toast.setGravity(
+                    Constants.TOAST_GRAVITY,
+                    Constants.TOAST_X_OFFSET,
+                    Constants.TOAST_Y_OFFSET
+                )
                 toast.show()
             } else {
                 adapter.submitList(it)
@@ -98,7 +103,8 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
         }
 
         dataModel.messageToActivity.observe(this) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VideoPlayerFragment.newInstance()).commit()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, VideoPlayerFragment.newInstance()).commit()
             binding.fragmentContainerView.visibility = View.VISIBLE
             dataModel.messageToActivity.value = null
         }

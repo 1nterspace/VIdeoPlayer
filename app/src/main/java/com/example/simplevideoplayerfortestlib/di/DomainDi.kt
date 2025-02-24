@@ -6,11 +6,11 @@ import org.koin.dsl.module
 
 val domainDi = module {
 
-    factory <GetListOfVideoUseCase> {
+    factory<GetListOfVideoUseCase> {
         GetListOfVideoUseCase(userRepository = get())
     }
 
-    factory <GetVideoUseCase> {
+    factory<GetVideoUseCase> {
         GetVideoUseCase(userRepository = get())
     }
 
