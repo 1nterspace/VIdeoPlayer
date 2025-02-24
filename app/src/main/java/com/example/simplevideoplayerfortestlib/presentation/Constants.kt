@@ -3,7 +3,6 @@ package com.example.simplevideoplayerfortestlib.presentation
 import android.view.Gravity
 import android.widget.Toast
 
-
 object Constants {
     const val ORIENTATION_LANDSCAPE = "Landscape"
     const val ORIENTATION_PORTRAIT = "Portrait"

@@ -7,7 +7,6 @@ import com.example.simplevideoplayerfortestlib.domain.models.VideoItem
 import com.example.simplevideoplayerfortestlib.domain.usecase.GetListOfVideoUseCase
 import com.example.simplevideoplayerfortestlib.domain.usecase.GetVideoUseCase
 
-
 class DataModel(
     private val getListOfVideoUseCase: GetListOfVideoUseCase,
     private val getVideoUseCase: GetVideoUseCase
