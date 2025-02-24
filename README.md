@@ -8,7 +8,7 @@ https://youtube.com/shorts/0p8XL2ZbMvo
 - Архитектура - Clean architecture,MVVM
 - DI - Koin
 - UI - Activity,Fragment,RecyclerView,SwipeRefreshLayout
-- Сеть - Retrofit
+- Сеть - OkHttp,Retrofit
 - Api - api.video
 - MinSdk - Api26
 
