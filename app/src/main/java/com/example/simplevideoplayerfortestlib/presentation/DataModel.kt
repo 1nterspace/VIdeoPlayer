@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.example.simplevideoplayerfortestlib.domain.models.VideoItem
 import com.example.simplevideoplayerfortestlib.domain.usecase.GetListOfVideoUseCase
 import com.example.simplevideoplayerfortestlib.domain.usecase.GetVideoUseCase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
+//Вьемодель работает с юзкейсами и реагирует на поступление данных с сервера
+//Также во вью модели храняться сообщения для взаимодействия Активити и Фрагмента
 class DataModel(
     private val getListOfVideoUseCase: GetListOfVideoUseCase,
     private val getVideoUseCase: GetVideoUseCase

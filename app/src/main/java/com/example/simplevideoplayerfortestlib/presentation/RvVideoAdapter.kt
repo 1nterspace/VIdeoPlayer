@@ -11,7 +11,7 @@ import com.example.simplevideoplayerfortestlib.databinding.VideoCardBinding
 import com.example.simplevideoplayerfortestlib.domain.models.VideoItem
 import com.squareup.picasso.Picasso
 
-
+//Адаптер RecyclerView, добавлен интерфей для обработки нажатий на активити.
 class RvVideoAdapter(private val listener: Listener) : ListAdapter <VideoItem, RvVideoAdapter.ViewHolder>(
     Comparator()
 ) {

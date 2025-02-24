@@ -5,7 +5,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -19,7 +18,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
+//Основной экран приложения, отвечает за отрисоку списка видео элементов,
+//работает с вьюмоделью
+//все взаимодействие с юзкейсами вынесено во вью модель
+//onConfigurationChanged - вручную отслеживаю повороты экрана для отрисовки разных экранов
+//initViews - функция для инициализации все вью объектов
 class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
 
     private val dataModel: DataModel by viewModel<DataModel>()
@@ -29,8 +32,6 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-
-        //supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VideoPlayerFragment.newInstance()).commit()
 
         // Обновление макета в зависимости от ориентации
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -55,7 +56,6 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
     }
     // Реализация интерфейса для обработки нажатия на элемент ресайкл вью
     override fun obClick(videoItem: VideoItem) {
-        //dataModel.messageToActivity.value = Constants.MESSAGE_TO_ACTIVITY_SHOW_FRAGMENT
         dataModel.messageToFragmentMP4.value = videoItem.assets.mp4
         dataModel.messageToFragmentTitle.value = videoItem.title
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VideoPlayerFragment.newInstance()).commit()
@@ -104,7 +104,6 @@ class MainActivity : AppCompatActivity(), RvVideoAdapter.Listener {
         }
 
     }
-
 
 }
 

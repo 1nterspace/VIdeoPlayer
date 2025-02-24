@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+//Класс для настройки GridLayout в RecyclerView
 class GridSpacingItemDecoration(
     private val spanCount: Int, // Количество столбцов
     private val spacing: Int,  // Размер отступа в пикселях
