@@ -12,7 +12,7 @@ https://youtube.com/shorts/0p8XL2ZbMvo
 - Api - api.video
 - MinSdk - Api26
 
-Документациия к api - https://docs.api.video/vod?_gl=1*7y3e3u*_gcl_au*MTU5MzQ5Mzk2OS4xNzM5ODc0MTU4LjEzNzczNDE3OTMuMTczOTg3NDc5Ny4xNzM5ODc0ODMw*_ga*ODA3MDM5MzY4LjE3Mzk4NzQxNTg.*_ga_PSYKRMEWL4*MTc0MDQwODk0NS4yNy4wLjE3NDA0MDg5NDUuMC4wLjA.)
+Документациия к api: https://docs.api.video/vod?_gl=1*7y3e3u*_gcl_au*MTU5MzQ5Mzk2OS4xNzM5ODc0MTU4LjEzNzczNDE3OTMuMTczOTg3NDc5Ny4xNzM5ODc0ODMw*_ga*ODA3MDM5MzY4LjE3Mzk4NzQxNTg.*_ga_PSYKRMEWL4*MTc0MDQwODk0NS4yNy4wLjE3NDA0MDg5NDUuMC4wLjA.)
 
 
 
